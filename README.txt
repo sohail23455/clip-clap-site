@@ -59,3 +59,4 @@ The same latest.json can later be used by Clip Clap's
 Important:
 The CURRENT app should not be claimed to auto-update unless that feature
 has actually been implemented and tested.
+Website connected to Vercel.
