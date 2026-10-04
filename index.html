@@ -4,106 +4,1171 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Clip Clap — AI Video Clipper for Windows</title>
-<meta name="description" content="Turn long videos into strong short clips on your Windows PC with Clip Clap.">
+<meta name="description" content="Turn long videos into polished short clips with local AI, captions, smart framing and timeline editing.">
+<meta name="theme-color" content="#090B10">
+
 <style>
-:root{--bg:#090b10;--panel:#11141b;--border:#252b37;--text:#f5f7fb;--muted:#98a2b3;--accent:#7c5cff;--accent2:#6549e5;--ok:#34d399}
+:root{
+  --bg:#090B10;
+  --panel:#11151D;
+  --panel2:#151925;
+  --line:#252B37;
+  --text:#F4F6FA;
+  --muted:#98A2B3;
+  --accent:#7C5CFF;
+  --accent2:#6248E8;
+  --blue:#4EA1FF;
+  --green:#31D49A;
+}
+
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 20% 0%,rgba(124,92,255,.16),transparent 30%),var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
-.wrap{max-width:1120px;margin:auto;padding:0 24px}
-header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.05)}
-.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:19px}
-.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#8d72ff,#5f45e8);box-shadow:0 12px 28px rgba(124,92,255,.25)}
-.pill{font-size:12px;color:#c5b9ff;border:1px solid #44396a;padding:7px 10px;border-radius:999px}
-.hero{text-align:center;padding:88px 0 58px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#b9adff;border:1px solid rgba(124,92,255,.25);background:rgba(124,92,255,.07);padding:7px 10px;border-radius:999px;font-size:12px}
-h1{font-size:62px;line-height:1.03;letter-spacing:-2.3px;max-width:900px;margin:22px auto 17px}
-.sub{max-width:680px;margin:auto;color:var(--muted);font-size:18px;line-height:1.65}
-.cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:14px 18px;border-radius:12px;font-weight:800}
-.primary{background:linear-gradient(180deg,#8468ff,#674be7);color:#fff;box-shadow:0 16px 36px rgba(124,92,255,.26)}
-.secondary{border:1px solid #2b3240;background:#131720;color:#e8ebf0}
-.meta{margin-top:13px;color:#6d7888;font-size:12px}
-.status{margin-top:13px;color:#9aa4b3;font-size:12px}.status b{color:#d8dce3}
-.mock{margin:55px auto 0;padding:16px;background:#11141b;border:1px solid #252b37;border-radius:22px;max-width:960px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
-.canvas{padding:26px;background:#0d1016;border-radius:16px;border:1px solid #202630}
-.upload{height:185px;border:1px dashed #3b4250;border-radius:15px;display:grid;place-items:center;color:#cec7ff;font-weight:800;background:rgba(124,92,255,.03)}
-.timeline{height:100px;border:1px solid #252b37;border-radius:14px;margin-top:17px;position:relative;background:#10141b}
-.seg{position:absolute;top:34px;height:34px;border-radius:8px;background:#3d91ff;border:1px solid #79b8ff}.a{left:10%;width:18%}.b{left:41%;width:15%}.c{left:70%;width:17%}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:62px 0}
-.card{padding:22px;background:linear-gradient(180deg,#12161e,#0f1218);border:1px solid #252b37;border-radius:16px}
-.card h3{margin:0 0 8px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
-.bottom{text-align:center;padding:62px 0;border-top:1px solid rgba(255,255,255,.05)}
-.bottom h2{font-size:34px;margin:0 0 10px}.bottom p{color:var(--muted)}
-footer{text-align:center;color:#687385;font-size:12px;padding:28px 0 40px}
-@media(max-width:760px){h1{font-size:43px}.grid{grid-template-columns:1fr}}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 18% 0%,rgba(124,92,255,.16),transparent 28%),
+    radial-gradient(circle at 82% 7%,rgba(78,161,255,.08),transparent 24%),
+    var(--bg);
+}
+
+a{color:inherit;text-decoration:none}
+.container{max-width:1180px;margin:auto;padding:0 26px}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  backdrop-filter:blur(18px);
+  background:rgba(9,11,16,.82);
+  border-bottom:1px solid rgba(255,255,255,.055);
+}
+
+.navin{
+  height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:850;
+  font-size:18px;
+}
+
+.logo{
+  width:39px;
+  height:39px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#927CFF,#6045E7);
+  box-shadow:0 12px 30px rgba(124,92,255,.24);
+  font-weight:900;
+}
+
+.links{
+  display:flex;
+  gap:24px;
+  align-items:center;
+  color:#A7B0BF;
+  font-size:13px;
+}
+
+.links a:hover{color:#fff}
+
+.navbtn{
+  border:1px solid #403669;
+  background:#171429;
+  color:#D6CEFF;
+  padding:9px 13px;
+  border-radius:10px;
+  font-weight:800;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:88px 0 52px;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 11px;
+  border-radius:999px;
+  border:1px solid rgba(124,92,255,.25);
+  background:rgba(124,92,255,.08);
+  color:#C2B7FF;
+  font-size:12px;
+  font-weight:750;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+}
+
+h1{
+  max-width:960px;
+  margin:22px auto 18px;
+  font-size:68px;
+  line-height:1.02;
+  letter-spacing:-2.7px;
+}
+
+.hero-text{
+  max-width:730px;
+  margin:auto;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.7;
+}
+
+.cta{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 19px;
+  border-radius:12px;
+  font-weight:850;
+  font-size:14px;
+}
+
+.primary{
+  color:#fff;
+  background:linear-gradient(180deg,#876BFF,#674BE7);
+  box-shadow:0 18px 38px rgba(124,92,255,.26);
+}
+
+.secondary{
+  border:1px solid #2C3340;
+  background:#141821;
+  color:#E9ECF1;
+}
+
+.meta{
+  margin-top:15px;
+  color:#707B8A;
+  font-size:12px;
+}
+
+.meta b{color:#DDE2E9}
+
+/* REAL PRODUCT MOCK */
+.product{
+  margin:58px auto 12px;
+  max-width:1080px;
+  padding:14px;
+  border-radius:24px;
+  border:1px solid #272D38;
+  background:linear-gradient(180deg,#11151D,#0E1117);
+  box-shadow:0 36px 100px rgba(0,0,0,.4);
+}
+
+.window{
+  border:1px solid #242A35;
+  border-radius:18px;
+  overflow:hidden;
+  background:#0D1016;
+}
+
+.windowbar{
+  height:43px;
+  border-bottom:1px solid #232A34;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:0 15px;
+  background:#10131A;
+}
+
+.ball{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#2D3542;
+}
+
+.app{
+  display:grid;
+  grid-template-columns:180px 1fr 260px;
+  min-height:580px;
+}
+
+.sidebar{
+  background:#0E1117;
+  border-right:1px solid #222935;
+  padding:18px 14px;
+}
+
+.side-logo{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-weight:800;
+  margin-bottom:22px;
+}
+
+.mini-logo{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  background:#7C5CFF;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+}
+
+.menu-item{
+  height:38px;
+  border-radius:9px;
+  background:#121722;
+  margin-bottom:8px;
+}
+
+.menu-item.active{background:#2A2244}
+
+.workspace{
+  padding:18px;
+  background:#0D1016;
+}
+
+/* REAL PHOTO PLAYER */
+.video-player{
+  height:250px;
+  border-radius:16px;
+  border:1px solid #252C38;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(to top,rgba(7,9,13,.85),rgba(7,9,13,.06)),
+    url("https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1400&q=90")
+    center/cover no-repeat;
+}
+
+.video-badge{
+  position:absolute;
+  top:15px;
+  right:15px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(8,10,14,.74);
+  border:1px solid rgba(255,255,255,.1);
+  color:#E0E5EC;
+  font-size:11px;
+}
+
+.playbar{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:16px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.play{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#fff;
+  color:#111;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  font-weight:900;
+}
+
+.time{
+  font-size:12px;
+  color:#E6EAF0;
+  font-weight:700;
+}
+
+.duration{
+  color:#9DA7B5;
+  font-weight:500;
+}
+
+.timeline-box{
+  margin-top:14px;
+  padding:15px;
+  border:1px solid #252C38;
+  border-radius:16px;
+  background:#11141B;
+}
+
+.timeline-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:11px;
+}
+
+.timeline-title b{font-size:13px}
+.timeline-title span{font-size:11px;color:#8994A4}
+
+/* photographic thumbnail strip */
+.thumbnails{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:4px;
+  height:62px;
+}
+
+.thumb{
+  border-radius:7px;
+  background-size:cover;
+  background-position:center;
+  border:1px solid #28313D;
+}
+
+.thumb:nth-child(1){background-image:url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=300&q=75")}
+.thumb:nth-child(2){background-image:url("https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=300&q=75")}
+.thumb:nth-child(3){background-image:url("https://images.unsplash.com/photo-1524650359799-842906ca1c06?auto=format&fit=crop&w=300&q=75")}
+.thumb:nth-child(4){background-image:url("https://images.unsplash.com/photo-1509824227185-9c5a01ceba0d?auto=format&fit=crop&w=300&q=75")}
+.thumb:nth-child(5){background-image:url("https://images.unsplash.com/photo-1488841714725-bb4c32d1ac94?auto=format&fit=crop&w=300&q=75")}
+.thumb:nth-child(6){background-image:url("https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=300&q=75")}
+.thumb:nth-child(7){background-image:url("https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=300&q=75")}
+.thumb:nth-child(8){background-image:url("https://images.unsplash.com/photo-1504680177321-2e6a879aac86?auto=format&fit=crop&w=300&q=75")}
+
+.track{
+  height:92px;
+  margin-top:10px;
+  border:1px solid #232B35;
+  border-radius:12px;
+  background:#0D1016;
+  position:relative;
+}
+
+.track-line{
+  position:absolute;
+  left:14px;
+  right:14px;
+  top:45px;
+  height:2px;
+  background:#28313D;
+}
+
+.clip{
+  position:absolute;
+  top:16px;
+  height:40px;
+  border-radius:9px;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:11px;
+  font-weight:850;
+  background:linear-gradient(180deg,#4EA1FF,#2F80ED);
+  border:1px solid #80C4FF;
+  box-shadow:0 8px 18px rgba(78,161,255,.2);
+}
+
+.clip1{left:5%;width:18%}
+.clip2{left:28%;width:16%}
+.clip3{left:51%;width:17%}
+.clip4{left:74%;width:17%}
+
+.timerow{
+  display:flex;
+  justify-content:space-between;
+  margin-top:7px;
+  color:#6F7A89;
+  font-size:9px;
+}
+
+.settings-panel{
+  border-left:1px solid #222935;
+  background:#10131A;
+  padding:18px;
+}
+
+.tabs{
+  display:flex;
+  gap:6px;
+  margin-bottom:14px;
+}
+
+.tab{
+  height:34px;
+  flex:1;
+  border-radius:8px;
+  background:#161B25;
+  border:1px solid #2A313D;
+}
+
+.tab.active{
+  background:#2B2347;
+  border-color:#4C3D79;
+}
+
+.setting{
+  margin-bottom:14px;
+}
+
+.setting label{
+  display:block;
+  color:#8490A0;
+  font-size:10px;
+  margin-bottom:6px;
+}
+
+.input{
+  height:39px;
+  border-radius:9px;
+  background:#0F1218;
+  border:1px solid #2A313D;
+}
+
+.toggle-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 0;
+  color:#CAD1DA;
+  font-size:12px;
+}
+
+.switch{
+  width:34px;
+  height:19px;
+  border-radius:999px;
+  background:#6D55EE;
+  position:relative;
+}
+
+.switch:after{
+  content:"";
+  position:absolute;
+  width:13px;
+  height:13px;
+  top:3px;
+  right:3px;
+  border-radius:50%;
+  background:white;
+}
+
+.find{
+  margin-top:12px;
+  height:46px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(180deg,#8467FF,#6649E5);
+  font-size:13px;
+  font-weight:850;
+}
+
+/* CONTENT SECTIONS */
+.section{padding:78px 0}
+
+.kicker{
+  color:#A99AFF;
+  font-size:12px;
+  font-weight:850;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+h2{
+  font-size:42px;
+  line-height:1.08;
+  letter-spacing:-1.4px;
+  margin:10px 0 12px;
+}
+
+.lead{
+  max-width:690px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.7;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:32px;
+}
+
+.card{
+  padding:22px;
+  border:1px solid #252B37;
+  border-radius:17px;
+  background:linear-gradient(180deg,#12161E,#0F1218);
+}
+
+.icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  margin-bottom:14px;
+  background:#211B38;
+  border:1px solid #3A2F60;
+  color:#BDB0FF;
+}
+
+.card h3{margin:0 0 7px;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+
+.modes{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+  margin-top:28px;
+}
+
+.mode{
+  padding:18px;
+  border:1px solid #252B37;
+  border-radius:14px;
+  background:#11151C;
+}
+
+.mode b{font-size:14px}
+.mode span{
+  display:block;
+  margin-top:6px;
+  color:#7F8A9A;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.compare{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:30px;
+}
+
+.plan{
+  padding:25px;
+  border:1px solid #282E39;
+  border-radius:18px;
+  background:#11151D;
+  position:relative;
+}
+
+.plan.pro{
+  border-color:#51418D;
+  background:linear-gradient(180deg,#17132B,#11141B);
+}
+
+.protag{
+  position:absolute;
+  top:18px;
+  right:18px;
+  font-size:10px;
+  font-weight:900;
+  color:#C9BEFF;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#241D44;
+  border:1px solid #51418D;
+}
+
+.price{
+  font-size:28px;
+  font-weight:900;
+  margin:12px 0 17px;
+}
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  color:#A6AFBC;
+  font-size:13px;
+}
+
+.list span:before{
+  content:"✓";
+  color:#8E7DFF;
+  margin-right:9px;
+}
+
+.requirements{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:28px;
+}
+
+.req{
+  padding:16px;
+  border:1px solid #252B37;
+  border-radius:14px;
+  background:#10141A;
+}
+
+.req small{
+  display:block;
+  color:#6F7A89;
+  margin-bottom:6px;
+}
+
+.req b{font-size:13px}
+
+.faq details{
+  margin-top:10px;
+  padding:16px 18px;
+  border:1px solid #252B37;
+  border-radius:13px;
+  background:#10141A;
+}
+
+.faq summary{
+  cursor:pointer;
+  font-weight:800;
+  font-size:14px;
+}
+
+.faq p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.final{
+  text-align:center;
+  padding:80px 0;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+
+.final h2{font-size:44px}
+
+footer{
+  padding:28px 0 40px;
+  border-top:1px solid rgba(255,255,255,.05);
+  color:#687385;
+  font-size:12px;
+}
+
+.foot{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+@media(max-width:950px){
+  .links{display:none}
+  .app{grid-template-columns:1fr}
+  .sidebar,.settings-panel{display:none}
+  .features{grid-template-columns:1fr 1fr}
+  .modes{grid-template-columns:1fr 1fr}
+  .compare{grid-template-columns:1fr}
+  .requirements{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:620px){
+  h1{font-size:44px}
+  h2{font-size:34px}
+  .container{padding:0 18px}
+  .features,.modes,.requirements{grid-template-columns:1fr}
+  .hero{padding-top:62px}
+}
 </style>
 </head>
+
 <body>
-<div class="wrap">
-<header>
-  <div class="brand"><div class="logo">C</div>Clip Clap</div>
-  <div class="pill">Windows</div>
-</header>
 
-<section class="hero">
-  <div class="eyebrow">● Local-first AI video clipping</div>
-  <h1>Find the moments worth sharing.</h1>
-  <p class="sub">Turn long videos into polished short clips with smart selection, captions, framing and editing — right on your Windows PC.</p>
+<nav>
+  <div class="container navin">
+    <div class="brand">
+      <div class="logo">C</div>
+      Clip Clap
+    </div>
 
-  <div class="cta">
-    <a id="downloadTop" class="btn primary" href="#">Download for Windows ↓</a>
-    <a class="btn secondary" href="#features">See features</a>
-  </div>
-
-  <div class="meta"><span id="versionText">Clip Clap v0.8.1</span> · Windows 10/11 · Local processing</div>
-  <div class="status">Latest version: <b id="latestStatus">Checking…</b></div>
-
-  <div class="mock">
-    <div class="canvas">
-      <div class="upload">Upload your video</div>
-      <div class="timeline">
-        <div class="seg a"></div><div class="seg b"></div><div class="seg c"></div>
-      </div>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#content">Content</a>
+      <a href="#plans">Free & Pro</a>
+      <a href="#requirements">Requirements</a>
+      <a id="navDownload" class="navbtn" href="#">Download</a>
     </div>
   </div>
+</nav>
+
+<section class="hero container">
+
+  <div class="eyebrow">
+    <span class="dot"></span>
+    Local-first AI video clipping
+  </div>
+
+  <h1>Find the moments worth sharing.</h1>
+
+  <p class="hero-text">
+    Turn long videos into polished short clips with smart selection,
+    captions, framing and timeline editing — right on your Windows PC.
+  </p>
+
+  <div class="cta">
+    <a id="downloadTop" class="btn primary" href="#">
+      Download for Windows ↓
+    </a>
+
+    <a class="btn secondary" href="#features">
+      Explore features
+    </a>
+  </div>
+
+  <div class="meta">
+    <b id="versionTop">Clip Clap v0.8.1</b>
+    · Windows 10/11 · Local processing
+  </div>
+
+  <div class="product">
+
+    <div class="window">
+
+      <div class="windowbar">
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+      </div>
+
+      <div class="app">
+
+        <aside class="sidebar">
+
+          <div class="side-logo">
+            <div class="mini-logo">C</div>
+            Clip Clap
+          </div>
+
+          <div class="menu-item active"></div>
+          <div class="menu-item"></div>
+          <div class="menu-item"></div>
+          <div class="menu-item"></div>
+          <div class="menu-item"></div>
+
+        </aside>
+
+        <main class="workspace">
+
+          <div class="video-player">
+
+            <div class="video-badge">
+              Real video preview
+            </div>
+
+            <div class="playbar">
+
+              <div class="play">▶</div>
+
+              <div class="time">
+                0:00
+                <span class="duration">/ 8:46</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="timeline-box">
+
+            <div class="timeline-title">
+              <b>Auto Clip Timeline</b>
+              <span>4 selected moments</span>
+            </div>
+
+            <div class="thumbnails">
+              <div class="thumb"></div>
+              <div class="thumb"></div>
+              <div class="thumb"></div>
+              <div class="thumb"></div>
+              <div class="thumb"></div>
+              <div class="thumb"></div>
+              <div class="thumb"></div>
+              <div class="thumb"></div>
+            </div>
+
+            <div class="track">
+
+              <div class="track-line"></div>
+
+              <div class="clip clip1">Clip 1</div>
+              <div class="clip clip2">Clip 2</div>
+              <div class="clip clip3">Clip 3</div>
+              <div class="clip clip4">Clip 4</div>
+
+            </div>
+
+            <div class="timerow">
+              <span>0:00</span>
+              <span>1:06</span>
+              <span>2:11</span>
+              <span>3:17</span>
+              <span>4:23</span>
+              <span>5:28</span>
+              <span>6:34</span>
+              <span>7:40</span>
+              <span>8:46</span>
+            </div>
+
+          </div>
+
+        </main>
+
+        <aside class="settings-panel">
+
+          <div class="tabs">
+            <div class="tab active"></div>
+            <div class="tab"></div>
+            <div class="tab"></div>
+          </div>
+
+          <div class="setting">
+            <label>Duration</label>
+            <div class="input"></div>
+          </div>
+
+          <div class="setting">
+            <label>Content Mode</label>
+            <div class="input"></div>
+          </div>
+
+          <div class="setting">
+            <label>Language</label>
+            <div class="input"></div>
+          </div>
+
+          <div class="setting">
+            <label>Format</label>
+            <div class="input"></div>
+          </div>
+
+          <div class="toggle-row">
+            <span>Auto Captions</span>
+            <div class="switch"></div>
+          </div>
+
+          <div class="toggle-row">
+            <span>Auto Clips</span>
+            <div class="switch"></div>
+          </div>
+
+          <div class="find">
+            Find Best Clips →
+          </div>
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
-<section id="features" class="grid">
-  <div class="card"><h3>Smart clip selection</h3><p>Find strong moments from speech, dance, action and mixed videos.</p></div>
-  <div class="card"><h3>Edit before export</h3><p>Move, trim and refine selected clips before rendering.</p></div>
-  <div class="card"><h3>Processed locally</h3><p>Your standard local workflow runs on your Windows PC.</p></div>
+
+<section id="features" class="section container">
+
+  <div class="kicker">Built for creators</div>
+
+  <h2>Professional clipping without the clutter.</h2>
+
+  <p class="lead">
+    Clip Clap handles the heavy work, then gives you direct control
+    over the final clips.
+  </p>
+
+  <div class="features">
+
+    <div class="card">
+      <div class="icon">✦</div>
+      <h3>Smart Clip Selection</h3>
+      <p>Find strong moments from speech, dance, action and mixed content.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">⌁</div>
+      <h3>Timeline Control</h3>
+      <p>Move, resize, add and remove selected clip regions before export.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">CC</div>
+      <h3>Auto Captions</h3>
+      <p>Create clean short-form captions with word-level timing.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">◎</div>
+      <h3>Smart Framing</h3>
+      <p>Keep subjects inside the frame for vertical short-form video.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">≡</div>
+      <h3>Batch Queue</h3>
+      <p>Queue multiple videos and keep your projects organized.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">◈</div>
+      <h3>Creator Tools</h3>
+      <p>Edit, preview, regenerate and export without leaving the app.</p>
+    </div>
+
+  </div>
+
 </section>
 
-<section class="bottom">
-  <h2>Ready to clip?</h2>
-  <p>Download the latest Windows version.</p>
-  <div class="cta"><a id="downloadBottom" class="btn primary" href="#">Download for Windows ↓</a></div>
+
+<section id="content" class="section container">
+
+  <div class="kicker">More than speech</div>
+
+  <h2>Different videos. Different signals.</h2>
+
+  <p class="lead">
+    Clip Clap adapts its selection workflow to the type of video.
+  </p>
+
+  <div class="modes">
+
+    <div class="mode">
+      <b>Talking / Podcast</b>
+      <span>Hooks, emotion, clarity and payoff.</span>
+    </div>
+
+    <div class="mode">
+      <b>Music / Dance</b>
+      <span>Motion, energy and visual peaks.</span>
+    </div>
+
+    <div class="mode">
+      <b>Visual / Action</b>
+      <span>Movement, scenes and strong moments.</span>
+    </div>
+
+    <div class="mode">
+      <b>Mixed</b>
+      <span>Speech, visuals and energy together.</span>
+    </div>
+
+  </div>
+
 </section>
 
-<footer>© 2026 Clip Clap · MSK PROMPT</footer>
-</div>
+
+<section id="plans" class="section container">
+
+  <div class="kicker">Start free</div>
+
+  <h2>Local AI without a paid API key.</h2>
+
+  <p class="lead">
+    Free stays useful. Pro unlocks more advanced creator tools.
+  </p>
+
+  <div class="compare">
+
+    <div class="plan">
+
+      <h3>Clip Clap Free</h3>
+
+      <div class="price">Free</div>
+
+      <div class="list">
+        <span>Local AI processing</span>
+        <span>Up to 3 clips per project</span>
+        <span>Basic captions</span>
+        <span>Timeline editing</span>
+        <span>Local exports</span>
+      </div>
+
+    </div>
+
+    <div class="plan pro">
+
+      <div class="protag">PRO</div>
+
+      <h3>Clip Clap Pro</h3>
+
+      <div class="price">Advanced tools</div>
+
+      <div class="list">
+        <span>Higher clip limits</span>
+        <span>Smart framing</span>
+        <span>Advanced cleanup</span>
+        <span>Batch processing</span>
+        <span>Brand and creator tools</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="requirements" class="section container">
+
+  <div class="kicker">System requirements</div>
+
+  <h2>Built for Windows.</h2>
+
+  <div class="requirements">
+
+    <div class="req">
+      <small>OS</small>
+      <b>Windows 10 / 11</b>
+    </div>
+
+    <div class="req">
+      <small>RAM</small>
+      <b>8 GB minimum</b>
+    </div>
+
+    <div class="req">
+      <small>GPU</small>
+      <b>Optional</b>
+    </div>
+
+    <div class="req">
+      <small>Internet</small>
+      <b>Initial setup / updates</b>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section container">
+
+  <div class="kicker">FAQ</div>
+
+  <h2>Simple answers.</h2>
+
+  <div class="faq">
+
+    <details>
+      <summary>Do users need Python or FFmpeg?</summary>
+      <p>No. The normal Windows installer packages the app runtime.</p>
+    </details>
+
+    <details>
+      <summary>Do I need an OpenAI API key?</summary>
+      <p>No. Clip Clap can use its local workflow without a paid cloud API key.</p>
+    </details>
+
+    <details>
+      <summary>Can it work with dance videos?</summary>
+      <p>Yes. Clip Clap includes non-speech and visual selection workflows.</p>
+    </details>
+
+    <details>
+      <summary>Do old projects remain saved?</summary>
+      <p>Yes. Uploading a new video does not delete previous projects.</p>
+    </details>
+
+  </div>
+
+</section>
+
+
+<section class="final container">
+
+  <div class="eyebrow">
+    <span class="dot"></span>
+    Windows desktop app
+  </div>
+
+  <h2>Start with your next video.</h2>
+
+  <p class="lead" style="margin:auto">
+    Download Clip Clap and turn long footage into clips worth keeping.
+  </p>
+
+  <div class="cta">
+    <a id="downloadBottom" class="btn primary" href="#">
+      Download for Windows ↓
+    </a>
+  </div>
+
+  <div class="meta">
+    Latest:
+    <b id="versionBottom">v0.8.1</b>
+  </div>
+
+</section>
+
+
+<footer>
+
+  <div class="container foot">
+
+    <div>
+      © 2026 Clip Clap · MSK PROMPT
+    </div>
+
+    <div>
+      Local-first creator tools for Windows
+    </div>
+
+  </div>
+
+</footer>
+
 
 <script>
-async function loadRelease(){
-  try{
-    const r = await fetch('./latest.json?ts=' + Date.now(), {cache:'no-store'});
-    const x = await r.json();
-    document.getElementById('versionText').textContent = 'Clip Clap v' + x.version;
-    document.getElementById('latestStatus').textContent = 'v' + x.version;
-    for(const id of ['downloadTop','downloadBottom']){
-      const el = document.getElementById(id);
-      el.href = x.download_url || '#';
-      el.target = '_blank';
-      el.rel = 'noopener';
-      if(!x.download_url || x.download_url === '#'){
-        el.onclick = e => {e.preventDefault(); alert('Installer link is not connected yet.');};
-      }
-    }
-  }catch(e){
-    document.getElementById('latestStatus').textContent = 'v0.8.1';
-  }
-}
-loadRelease();
+
+const DOWNLOAD_URL =
+"https://github.com/sohail23455/clip-clap-releases/releases/download/v0.8.1/Clip-Clap-Setup-0.8.1.exe";
+
+const VERSION = "0.8.1";
+
+[
+  "navDownload",
+  "downloadTop",
+  "downloadBottom"
+].forEach(id=>{
+
+  const el=document.getElementById(id);
+
+  el.href=DOWNLOAD_URL;
+
+  el.target="_blank";
+
+  el.rel="noopener";
+
+});
+
+document.getElementById("versionTop").textContent =
+"Clip Clap v"+VERSION;
+
+document.getElementById("versionBottom").textContent =
+"v"+VERSION;
+
 </script>
+
 </body>
 </html>
