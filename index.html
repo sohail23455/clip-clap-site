@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clip Clap — AI Video Clipper for Windows</title>
+<meta name="description" content="Turn long videos into strong short clips on your Windows PC with Clip Clap.">
+<style>
+:root{--bg:#090b10;--panel:#11141b;--border:#252b37;--text:#f5f7fb;--muted:#98a2b3;--accent:#7c5cff;--accent2:#6549e5;--ok:#34d399}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 20% 0%,rgba(124,92,255,.16),transparent 30%),var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
+.wrap{max-width:1120px;margin:auto;padding:0 24px}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.05)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:19px}
+.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#8d72ff,#5f45e8);box-shadow:0 12px 28px rgba(124,92,255,.25)}
+.pill{font-size:12px;color:#c5b9ff;border:1px solid #44396a;padding:7px 10px;border-radius:999px}
+.hero{text-align:center;padding:88px 0 58px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#b9adff;border:1px solid rgba(124,92,255,.25);background:rgba(124,92,255,.07);padding:7px 10px;border-radius:999px;font-size:12px}
+h1{font-size:62px;line-height:1.03;letter-spacing:-2.3px;max-width:900px;margin:22px auto 17px}
+.sub{max-width:680px;margin:auto;color:var(--muted);font-size:18px;line-height:1.65}
+.cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;padding:14px 18px;border-radius:12px;font-weight:800}
+.primary{background:linear-gradient(180deg,#8468ff,#674be7);color:#fff;box-shadow:0 16px 36px rgba(124,92,255,.26)}
+.secondary{border:1px solid #2b3240;background:#131720;color:#e8ebf0}
+.meta{margin-top:13px;color:#6d7888;font-size:12px}
+.status{margin-top:13px;color:#9aa4b3;font-size:12px}.status b{color:#d8dce3}
+.mock{margin:55px auto 0;padding:16px;background:#11141b;border:1px solid #252b37;border-radius:22px;max-width:960px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.canvas{padding:26px;background:#0d1016;border-radius:16px;border:1px solid #202630}
+.upload{height:185px;border:1px dashed #3b4250;border-radius:15px;display:grid;place-items:center;color:#cec7ff;font-weight:800;background:rgba(124,92,255,.03)}
+.timeline{height:100px;border:1px solid #252b37;border-radius:14px;margin-top:17px;position:relative;background:#10141b}
+.seg{position:absolute;top:34px;height:34px;border-radius:8px;background:#3d91ff;border:1px solid #79b8ff}.a{left:10%;width:18%}.b{left:41%;width:15%}.c{left:70%;width:17%}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:62px 0}
+.card{padding:22px;background:linear-gradient(180deg,#12161e,#0f1218);border:1px solid #252b37;border-radius:16px}
+.card h3{margin:0 0 8px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.bottom{text-align:center;padding:62px 0;border-top:1px solid rgba(255,255,255,.05)}
+.bottom h2{font-size:34px;margin:0 0 10px}.bottom p{color:var(--muted)}
+footer{text-align:center;color:#687385;font-size:12px;padding:28px 0 40px}
+@media(max-width:760px){h1{font-size:43px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="logo">C</div>Clip Clap</div>
+  <div class="pill">Windows</div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">● Local-first AI video clipping</div>
+  <h1>Find the moments worth sharing.</h1>
+  <p class="sub">Turn long videos into polished short clips with smart selection, captions, framing and editing — right on your Windows PC.</p>
+
+  <div class="cta">
+    <a id="downloadTop" class="btn primary" href="#">Download for Windows ↓</a>
+    <a class="btn secondary" href="#features">See features</a>
+  </div>
+
+  <div class="meta"><span id="versionText">Clip Clap v0.8.1</span> · Windows 10/11 · Local processing</div>
+  <div class="status">Latest version: <b id="latestStatus">Checking…</b></div>
+
+  <div class="mock">
+    <div class="canvas">
+      <div class="upload">Upload your video</div>
+      <div class="timeline">
+        <div class="seg a"></div><div class="seg b"></div><div class="seg c"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="grid">
+  <div class="card"><h3>Smart clip selection</h3><p>Find strong moments from speech, dance, action and mixed videos.</p></div>
+  <div class="card"><h3>Edit before export</h3><p>Move, trim and refine selected clips before rendering.</p></div>
+  <div class="card"><h3>Processed locally</h3><p>Your standard local workflow runs on your Windows PC.</p></div>
+</section>
+
+<section class="bottom">
+  <h2>Ready to clip?</h2>
+  <p>Download the latest Windows version.</p>
+  <div class="cta"><a id="downloadBottom" class="btn primary" href="#">Download for Windows ↓</a></div>
+</section>
+
+<footer>© 2026 Clip Clap · MSK PROMPT</footer>
+</div>
+
+<script>
+async function loadRelease(){
+  try{
+    const r = await fetch('./latest.json?ts=' + Date.now(), {cache:'no-store'});
+    const x = await r.json();
+    document.getElementById('versionText').textContent = 'Clip Clap v' + x.version;
+    document.getElementById('latestStatus').textContent = 'v' + x.version;
+    for(const id of ['downloadTop','downloadBottom']){
+      const el = document.getElementById(id);
+      el.href = x.download_url || '#';
+      el.target = '_blank';
+      el.rel = 'noopener';
+      if(!x.download_url || x.download_url === '#'){
+        el.onclick = e => {e.preventDefault(); alert('Installer link is not connected yet.');};
+      }
+    }
+  }catch(e){
+    document.getElementById('latestStatus').textContent = 'v0.8.1';
+  }
+}
+loadRelease();
+</script>
+</body>
+</html>
