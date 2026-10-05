@@ -1990,6 +1990,42 @@ document
 
 </script>
 
+<script>
+(async function () {
+  try {
+    const res = await fetch('./latest.json?ts=' + Date.now(), {
+      cache: 'no-store'
+    });
 
+    if (!res.ok) return;
+
+    const latest = await res.json();
+
+    ["navDownload", "downloadTop", "downloadBottom"].forEach(id => {
+      const el = document.getElementById(id);
+
+      if (el && latest.download_url) {
+        el.href = latest.download_url;
+        el.target = "_blank";
+        el.rel = "noopener";
+      }
+    });
+
+    const top = document.getElementById("versionTop");
+    const bottom = document.getElementById("versionBottom");
+
+    if (top && latest.version) {
+      top.textContent = "Clip Clap v" + latest.version;
+    }
+
+    if (bottom && latest.version) {
+      bottom.textContent = "v" + latest.version;
+    }
+
+  } catch (e) {
+    console.warn("Latest release information unavailable.");
+  }
+})();
+</script>
 </body>
 </html>
