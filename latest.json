@@ -1,6 +1,8 @@
-﻿{
-    "download_url":  "https://github.com/sohail23455/clip-clap-releases/releases/download/v0.8.1/Clip-Clap-Setup-0.8.1.exe",
-    "released":  "2026-10-03",
-    "version":  "0.8.1",
-    "notes":  "Current Clip Clap Windows release."
+{
+  "version": "0.10.1",
+  "download_url": "https://github.com/sohail23455/clip-clap-releases/releases/download/v0.10.1/Clip-Clap-Setup-0.10.1.exe",
+  "sha256": "0879c0243f7e6a287a4057b55599745dc3a01bb75fd671d620455abbe0f77397",
+  "size_bytes": 312287232,
+  "release_date": "2026-10-04",
+  "notes": "Secure update system, upgrade safety, data preservation and reliability improvements."
 }
