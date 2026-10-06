@@ -12,6 +12,8 @@
 >
 
 <meta name="theme-color" content="#090B10">
+<link rel="icon" type="image/svg+xml" href="./clip-clap-icon.svg">
+<link rel="shortcut icon" href="./clip-clap-icon.svg">
 
 <style>
 :root{
@@ -75,48 +77,13 @@ a{
   gap:10px;
 }
 
-.brand-icon{
+.brand-icon-img{
   width:34px;
   height:34px;
   border-radius:10px;
-  position:relative;
   flex-shrink:0;
-
-  background:
-    linear-gradient(135deg,#41B8FF 0%,#4D56FF 45%,#8B2BFF 100%);
-
-  box-shadow:
-    0 8px 22px rgba(95,74,255,.28);
-}
-
-.brand-icon::before{
-  content:"C";
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-
-  color:#fff;
-  font-size:23px;
-  font-weight:900;
-  line-height:1;
-}
-
-.brand-icon::after{
-  content:"";
-  position:absolute;
-
-  left:15px;
-  top:12px;
-
-  width:0;
-  height:0;
-
-  border-top:5px solid transparent;
-  border-bottom:5px solid transparent;
-  border-left:8px solid #fff;
-
-  filter:drop-shadow(0 1px 2px rgba(0,0,0,.18));
+  display:block;
+  box-shadow:0 8px 22px rgba(95,74,255,.28);
 }
 
 .brand-text{
@@ -372,23 +339,10 @@ h1{
   margin-bottom:22px;
 }
 
-.side-logo .brand-icon{
+.side-logo .brand-icon-img{
   width:30px;
   height:30px;
   border-radius:9px;
-}
-
-.side-logo .brand-icon::before{
-  font-size:20px;
-}
-
-.side-logo .brand-icon::after{
-  left:13px;
-  top:10px;
-
-  border-top-width:5px;
-  border-bottom-width:5px;
-  border-left-width:7px;
 }
 
 .side-logo-text{
@@ -1202,7 +1156,7 @@ footer{
 
     <div class="brand">
 
-      <div class="brand-icon"></div>
+      <img class="brand-icon-img" src="./clip-clap-icon.svg" alt="Clip Clap">
 
       <span class="brand-text">
         Clip Clap
@@ -1303,7 +1257,7 @@ footer{
   <div class="meta">
 
     <b id="versionTop">
-      Clip Clap v0.8.1
+      Clip Clap v0.10.1
     </b>
 
     · Windows 10/11
@@ -1341,7 +1295,7 @@ footer{
 
           <div class="side-logo">
 
-            <div class="brand-icon"></div>
+            <img class="brand-icon-img" src="./clip-clap-icon.svg" alt="Clip Clap">
 
             <span class="side-logo-text">
               Clip Clap
@@ -1920,7 +1874,7 @@ footer{
     Latest:
 
     <b id="versionBottom">
-      v0.8.1
+      v0.10.1
     </b>
 
   </div>
@@ -1952,10 +1906,10 @@ footer{
 <script>
 
 const DOWNLOAD_URL =
-"https://github.com/sohail23455/clip-clap-releases/releases/download/v0.8.1/Clip-Clap-Setup-0.8.1.exe";
+"https://github.com/sohail23455/clip-clap-releases/releases/download/v0.10.1/Clip-Clap-Setup-0.10.1.exe";
 
 const VERSION =
-"0.8.1";
+"0.10.1";
 
 [
   "navDownload",
