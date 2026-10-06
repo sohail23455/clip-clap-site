@@ -13,7 +13,8 @@
 
 <meta name="theme-color" content="#090B10">
 <link rel="icon" type="image/svg+xml" href="./clip-clap-icon.svg">
-<link rel="shortcut icon" href="./clip-clap-icon.svg">
+<link rel="icon" sizes="any" href="./favicon.ico">
+<link rel="apple-touch-icon" href="./clip-clap-icon-512.png">
 
 <style>
 :root{
@@ -77,13 +78,12 @@ a{
   gap:10px;
 }
 
-.brand-icon-img{
+.brand-icon{
   width:34px;
   height:34px;
-  border-radius:10px;
-  flex-shrink:0;
   display:block;
-  box-shadow:0 8px 22px rgba(95,74,255,.28);
+  object-fit:contain;
+  flex-shrink:0;
 }
 
 .brand-text{
@@ -339,7 +339,7 @@ h1{
   margin-bottom:22px;
 }
 
-.side-logo .brand-icon-img{
+.side-logo .brand-icon{
   width:30px;
   height:30px;
   border-radius:9px;
@@ -1156,7 +1156,7 @@ footer{
 
     <div class="brand">
 
-      <img class="brand-icon-img" src="./clip-clap-icon.svg" alt="Clip Clap">
+      <img class="brand-icon" src="./clip-clap-icon.svg" width="34" height="34" alt="" aria-hidden="true">
 
       <span class="brand-text">
         Clip Clap
@@ -1186,7 +1186,7 @@ footer{
       <a
         id="navDownload"
         class="navbtn"
-        href="#"
+        href="https://github.com/sohail23455/clip-clap-releases/releases/latest"
       >
         Download
       </a>
@@ -1234,7 +1234,7 @@ footer{
     <a
       id="downloadTop"
       class="btn primary"
-      href="#"
+      href="https://github.com/sohail23455/clip-clap-releases/releases/latest"
     >
 
       Download for Windows ↓
@@ -1257,7 +1257,7 @@ footer{
   <div class="meta">
 
     <b id="versionTop">
-      Clip Clap v0.10.1
+      Latest Windows release
     </b>
 
     · Windows 10/11
@@ -1295,7 +1295,7 @@ footer{
 
           <div class="side-logo">
 
-            <img class="brand-icon-img" src="./clip-clap-icon.svg" alt="Clip Clap">
+            <img class="brand-icon" src="./clip-clap-icon.svg" width="34" height="34" alt="" aria-hidden="true">
 
             <span class="side-logo-text">
               Clip Clap
@@ -1862,7 +1862,7 @@ footer{
     <a
       id="downloadBottom"
       class="btn primary"
-      href="#"
+      href="https://github.com/sohail23455/clip-clap-releases/releases/latest"
     >
       Download for Windows ↓
     </a>
@@ -1874,7 +1874,7 @@ footer{
     Latest:
 
     <b id="versionBottom">
-      v0.10.1
+      Latest Windows release
     </b>
 
   </div>
@@ -1903,83 +1903,8 @@ footer{
 
 
 
-<script>
+<script type="module">import {connectDownloads} from "./download.mjs";connectDownloads();</script>
 
-const DOWNLOAD_URL =
-"https://github.com/sohail23455/clip-clap-releases/releases/download/v0.10.1/Clip-Clap-Setup-0.10.1.exe";
 
-const VERSION =
-"0.10.1";
-
-[
-  "navDownload",
-  "downloadTop",
-  "downloadBottom"
-]
-.forEach(id=>{
-
-  const el =
-    document.getElementById(id);
-
-  el.href =
-    DOWNLOAD_URL;
-
-  el.target =
-    "_blank";
-
-  el.rel =
-    "noopener";
-
-});
-
-document
-.getElementById("versionTop")
-.textContent =
-"Clip Clap v"+VERSION;
-
-document
-.getElementById("versionBottom")
-.textContent =
-"v"+VERSION;
-
-</script>
-
-<script>
-(async function () {
-  try {
-    const res = await fetch('./latest.json?ts=' + Date.now(), {
-      cache: 'no-store'
-    });
-
-    if (!res.ok) return;
-
-    const latest = await res.json();
-
-    ["navDownload", "downloadTop", "downloadBottom"].forEach(id => {
-      const el = document.getElementById(id);
-
-      if (el && latest.download_url) {
-        el.href = latest.download_url;
-        el.target = "_blank";
-        el.rel = "noopener";
-      }
-    });
-
-    const top = document.getElementById("versionTop");
-    const bottom = document.getElementById("versionBottom");
-
-    if (top && latest.version) {
-      top.textContent = "Clip Clap v" + latest.version;
-    }
-
-    if (bottom && latest.version) {
-      bottom.textContent = "v" + latest.version;
-    }
-
-  } catch (e) {
-    console.warn("Latest release information unavailable.");
-  }
-})();
-</script>
 </body>
 </html>

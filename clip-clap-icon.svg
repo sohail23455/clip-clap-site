@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Clip Clap">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
   <defs>
-    <linearGradient id="g" x1="70" y1="70" x2="442" y2="442" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#41B8FF"/>
-      <stop offset="0.48" stop-color="#4D56FF"/>
-      <stop offset="1" stop-color="#8B2BFF"/>
+    <linearGradient id="brand" x1="16" y1="8" x2="240" y2="248" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#234BB6"/>
+      <stop offset=".48" stop-color="#4B56DC"/>
+      <stop offset="1" stop-color="#7C4DE0"/>
     </linearGradient>
   </defs>
-  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#g)"/>
-  <path d="M334 153 A122 122 0 1 0 334 359" fill="none" stroke="#fff" stroke-width="54" stroke-linecap="round"/>
-  <path d="M245 203 L245 309 L334 256 Z" fill="#fff"/>
+  <rect width="256" height="256" rx="56" fill="url(#brand)"/>
+  <path d="M151 76 A65 65 0 1 0 151 180" stroke="white" stroke-width="30" stroke-linecap="round"/>
+  <path d="M145 101 L187 128 L145 155 Z" fill="white" stroke="white" stroke-width="4" stroke-linejoin="round"/>
 </svg>

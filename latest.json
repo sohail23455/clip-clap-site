@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "channel": "stable",
-  "version": "0.10.1",
-  "download_url": "https://github.com/sohail23455/clip-clap-releases/releases/download/v0.10.1/Clip-Clap-Setup-0.10.1.exe",
-  "sha256": "0879c0243f7e6a287a4057b55599745dc3a01bb75fd671d620455abbe0f77397",
-  "size_bytes": 312905475,
-  "release_date": "2026-10-04",
-  "notes": "Secure update system, upgrade safety, data preservation and reliability improvements.",
+  "version": "0.11.0",
+  "download_url": "https://github.com/sohail23455/clip-clap-releases/releases/download/v0.11.0/Clip-Clap-Setup-0.11.0.exe",
+  "sha256": "cce48cb61f10f4956ba9c6cdd2fb7b76dc1a1d3fe98cb8c83a1c692daa69f4ac",
+  "size_bytes": 313087042,
+  "release_date": "2026-10-05",
+  "notes": "# Clip Clap v0.11.0\n\nRelease date: 2026-10-05 · Windows 10/11\n\n- Auto Improve: more restrained, content-aware editing, with a bounded quality check that keeps the last verified render when a correction does not help.\n- Overlay Cleanup: select your own overlay or use automatic detection. Small marks on simple backgrounds can be reconstructed locally; uncertain areas retain the original for review. Blur remains an explicit choice.\n- Consistent blue-to-purple C/play branding across the Windows app, installer, website and favicon.\n- Connect AI supports compatible services through the Universal Connector, including verified APMix ranking, metadata and review. Local AI remains available without a paid API key.\n- Reliable exports and update preparation, preserving projects, models and encrypted connections across installation.\n- Cleaner Auto controls, Results and area selection, plus corrected setup privacy information and About labels.\n\nOriginal media stays untouched. Full video files are never sent to cloud AI; optional cloud actions require your approval for the selected text or audio. Review captions and creative decisions before sharing. Overlay reconstruction is intentionally conservative.\n\nThis Windows evaluation installer is unsigned and includes LGPL-compatible FFmpeg.",
   "minimum_supported_version": "0.10.0",
-  "installer_filename": "Clip-Clap-Setup-0.10.1.exe",
+  "installer_filename": "Clip-Clap-Setup-0.11.0.exe",
   "mandatory": false,
-  "release_notes_url": "https://github.com/sohail23455/clip-clap-releases/releases/tag/v0.10.1"
+  "release_notes_url": "https://github.com/sohail23455/clip-clap-releases/releases/tag/v0.11.0"
 }

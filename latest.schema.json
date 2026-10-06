@@ -1,0 +1,97 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "channel": {
+      "const": "stable",
+      "default": "stable",
+      "title": "Channel",
+      "type": "string"
+    },
+    "version": {
+      "maxLength": 100,
+      "title": "Version",
+      "type": "string"
+    },
+    "download_url": {
+      "title": "Download Url",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Sha256",
+      "type": "string"
+    },
+    "size_bytes": {
+      "maximum": 2147483648,
+      "minimum": 1048576,
+      "title": "Size Bytes",
+      "type": "integer"
+    },
+    "release_date": {
+      "title": "Release Date",
+      "type": "string"
+    },
+    "notes": {
+      "maxLength": 8000,
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    },
+    "minimum_supported_version": {
+      "title": "Minimum Supported Version",
+      "type": "string"
+    },
+    "installer_filename": {
+      "title": "Installer Filename",
+      "type": "string"
+    },
+    "mandatory": {
+      "default": false,
+      "title": "Mandatory",
+      "type": "boolean"
+    },
+    "release_notes_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Release Notes Url"
+    },
+    "signature": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Signature"
+    }
+  },
+  "required": [
+    "schema_version",
+    "version",
+    "download_url",
+    "sha256",
+    "size_bytes",
+    "release_date",
+    "notes",
+    "minimum_supported_version",
+    "installer_filename"
+  ],
+  "title": "Manifest",
+  "type": "object"
+}
