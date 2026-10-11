@@ -29,8 +29,8 @@ export async function connectDownloads(doc=document,fetcher=fetch){
   if(!response.ok)throw Error('Unavailable');
   const text=await response.text();if(text.length>32768)throw Error('Too large');
   const m=validateManifest(JSON.parse(text.replace(/^\uFEFF/,'')));
-  links.forEach(a=>{a.href=m.download_url;a.setAttribute('aria-label',`Download Clip Clap v${m.version} for Windows`);});
-  labels.forEach(el=>{el.textContent=`Clip Clap v${m.version} · ${(m.size_bytes/1048576).toFixed(1)} MB`;});
+  links.forEach(a=>{a.href=m.download_url;a.dataset.version=m.version;a.setAttribute('aria-label',`Download Clip Clap v${m.version} for Windows`);});
+  labels.forEach(el=>{el.textContent=`Clip Clap v${m.version} Â· ${(m.size_bytes/1048576).toFixed(1)} MB`;});
   return true;
  }catch{return false;}finally{clearTimeout(timer);}
 }
