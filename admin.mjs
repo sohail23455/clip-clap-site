@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id),number=v=>v==null?'—':Number(v).toLocaleString();
-let pending=false,codeSent=false,generation=0;
+let pending=false,signingIn=false,generation=0;
 async function api(path,body){
  const r=await fetch(path,{method:body?'POST':'GET',credentials:'same-origin',cache:'no-store',headers:body?{'Content-Type':'application/json'}:{},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(15000)});
  const data=await r.json();if(!r.ok)throw Object.assign(new Error(data.error||'Service temporarily unavailable.'),{status:r.status});return data;
@@ -40,12 +40,11 @@ async function load(){
  try{const data=await api('/api/dashboard?range='+$('range').value);if(ticket===generation)render(data);}catch(e){if(e.status===401)signedOut();else showError(e);}finally{pending=false;$('refresh').disabled=false;$('range').disabled=false;$('status').hidden=true;}
 }
 $('login-form').addEventListener('submit',async event=>{
- event.preventDefault();clearError();$('signin').disabled=true;
- try{const data=await api('/api/auth',{action:codeSent?'verify':'send',email:$('email').value,...(codeSent?{code:$('code').value}:{})});
-  if(codeSent){$('code').value='';await load();}else{codeSent=true;$('code-field').hidden=false;$('code').required=true;$('email').readOnly=true;$('signin').textContent='Sign in';$('resend').hidden=false;$('login-note').textContent=data.message;$('code').focus();}
- }catch(e){showError(e);}finally{$('signin').disabled=false;}
+ event.preventDefault();if(signingIn)return;signingIn=true;clearError();$('signin').disabled=true;
+ try{await api('/api/auth',{action:'login',email:$('email').value,password:$('password').value});
+  $('password').value='';await load();
+ }catch(e){showError(e);}finally{$('password').value='';signingIn=false;$('signin').disabled=false;}
 });
-$('resend').addEventListener('click',()=>{codeSent=false;$('code-field').hidden=true;$('code').required=false;$('code').value='';$('email').readOnly=false;$('signin').textContent='Send sign-in code';$('resend').hidden=true;$('login-note').textContent='';});
 $('signout').addEventListener('click',async()=>{try{await api('/api/auth',{action:'logout'});signedOut();}catch(e){showError(e);}});
 $('range').addEventListener('change',load);$('refresh').addEventListener('click',load);$('retry').addEventListener('click',load);
 void load();

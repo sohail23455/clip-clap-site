@@ -6,7 +6,7 @@ Owner dashboard: https://clipclap.mskmpt.pro/admin
 
 The public installer manifest remains **v0.11.0**. Anonymous app analytics begins with the separately verified, unpublished v0.11.1 desktop candidate and is off by default.
 
-Static homepage and first-party visit/download events; Vercel Node functions; one Supabase project for private PostgreSQL analytics and owner email OTP. No service key is included in static assets or the desktop app. An unconfigured backend returns a safe unavailable state and never blocks installer navigation.
+Static homepage and first-party visit/download events; Vercel Node functions; one Supabase project for private PostgreSQL analytics and owner email/password authentication. No service key is included in static assets or the desktop app. An unconfigured backend returns a safe unavailable state and never blocks installer navigation.
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for the exact environment variables, SQL migration, owner setup, retention, metric definitions and production verification gates.
 
